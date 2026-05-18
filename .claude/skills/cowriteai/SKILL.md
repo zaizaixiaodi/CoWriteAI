@@ -27,7 +27,7 @@ allowed-tools: Read, Write, Glob, Bash
    }
    ```
 5. 输出：`已立项 epXXX「标题」→ cowriteai/projects/epXXX-slug/`
-6. 告知用户：「项目已建好，告诉我你想聊什么，我来启动对谈。」（由主控调用 @dialogue-editor）
+6. 告知用户：「项目已建好，告诉我你想聊什么，我来启动对谈。」
 
 ---
 

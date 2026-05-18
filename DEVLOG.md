@@ -4,6 +4,27 @@
 
 ---
 
+## 2026-05-18 — 里程碑 M2：dialogue-editor 从 subagent 改为 skill
+
+**问题：**
+- `dialogue-editor` 被定义为 subagent（`.claude/agents/`），但 subagent 即用即销、无法与用户多轮交互
+- Stage 1 对谈激发本质是多轮对话，用 subagent 架构从根上就跑不通
+
+**改动：**
+- 新增 `.claude/skills/dialogue-editor/SKILL.md`，将 dialogue-editor 迁移为 skill（在主对话上下文运行，天然支持多轮）
+- 删除 `.claude/agents/dialogue-editor.md`
+- CLAUDE.md Stage 1 从「委托给 @dialogue-editor」改为「调用 Skill `dialogue-editor`」
+- `cowriteai` skill 移除残留的 `@dialogue-editor` 引用
+
+**核心决策：**
+Skill 在主 Agent 上下文运行，适合需要用户交互的多轮行为；Subagent 独立运行一次返回结果，适合「写出一个文件就完事」的自治任务（Stage 2/6/8/9）。两者用途不同，不能混用。
+
+**下一步：**
+- 验证其余 subagent（topic-planner、stylist、shoot-director、distribution-expert）是否同样存在多轮交互问题
+- 走通完整流程测试
+
+---
+
 ## 2026-05-17 — 里程碑 M1：架构重构
 
 **问题：**

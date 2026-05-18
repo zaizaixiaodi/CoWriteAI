@@ -32,7 +32,11 @@
 ## 工作流（10 个阶段）
 
 ### Stage 1：对谈激发
-委托给 **@dialogue-editor**，不要自己做。
+调用 Skill `dialogue-editor`，以对谈编辑身份进行多轮对话。
+
+- 每次用户发言 → 回应并追问，结束后写入 `dialogue/round_NN.md`
+- 满 3 轮后，在回应末尾提示可以「进选题」，但不主动推进
+- 用户说「进选题」→ 更新 state.json → 进入 Stage 2
 
 ### Stage 2：选题收敛
 委托给 **@topic-planner**。
